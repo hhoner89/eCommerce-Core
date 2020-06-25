@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
@@ -18,6 +18,12 @@
     <ProjectReference Include="..\DPLRef.eCommerce.Common.Contracts\DPLRef.eCommerce.Common.Contracts.csproj" />
     <ProjectReference Include="..\DPLRef.eCommerce.Common.Shared\DPLRef.eCommerce.Common.Shared.csproj" />
     <ProjectReference Include="..\DPLRef.eCommerce.Utilities\DPLRef.eCommerce.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="USATaxer">
+      <HintPath>..\..\3rdParty\USTaxer-Framework\USATaxer\bin\Debug\USATaxer.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

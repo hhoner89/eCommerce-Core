@@ -16,7 +16,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
     public class CartManagerTests : ManagerTestBase
     {
         #region Test Data
-  
+
         private static readonly Guid _myBadSessionId = new Guid("11111111-bbbb-cccc-dddd-eeeeeeeeeeee");
         private static readonly Guid _myBothInfoSessionId = new Guid("ffffffff-bbbb-cccc-dddd-eeeeeeeeeeee");
         private static readonly Address _myAddress = new Address()
@@ -52,7 +52,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
                 AuthToken = "",
                 SessionId = MockData.MySessionId
             }
-        };       
+        };
 
 
         private readonly WebStoreCart _billingInfoCart = new WebStoreCart()
@@ -106,7 +106,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
         }
 
         private EngineFactory SetupMockEngineFactory()
-        {          
+        {
             EngineFactory engFactory = new EngineFactory(this.mockData.Context, SetupMockAccessorFactory(), null);
             return engFactory;
         }
@@ -139,7 +139,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
             Assert.AreEqual(1, response.Cart.CartItems[0].Quantity);
             Assert.AreEqual(1.50m, response.Cart.CartItems[0].UnitPrice);
             Assert.AreEqual(1.50m, response.Cart.CartItems[0].ExtendedPrice);
-            Assert.AreEqual(0.10m, response.Cart.TaxAmount);
+            Assert.AreEqual(0.11m, response.Cart.TaxAmount);
         }
 
         [TestMethod]

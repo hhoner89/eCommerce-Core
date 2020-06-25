@@ -70,7 +70,7 @@ namespace DPLRef.eCommerce.Tests.AccessorTests
             {
                 BillingAddress = BillingAddress,
                 ShippingAddress = ShippingAddress,
-                OrderLines = new OrderLine[] 
+                OrderLines = new OrderLine[]
                 {
                     new OrderLine()
                     {
@@ -85,7 +85,7 @@ namespace DPLRef.eCommerce.Tests.AccessorTests
                 Status = OrderStatuses.Authorized,
                 SubTotal = 10.0M,
                 TaxAmount = 0.70M,
-                Total = 10.70M                    
+                Total = 10.70M
             };
 
             var accessor = CreateOrderAccessor();
@@ -309,9 +309,8 @@ namespace DPLRef.eCommerce.Tests.AccessorTests
             }
 
             var saved = accessor.SaveOrder(2, order);
-
             Assert.IsNotNull(saved);
-            
+
             var after = accessor.SalesTotal();
             Assert.IsNotNull(after);
 
@@ -326,7 +325,7 @@ namespace DPLRef.eCommerce.Tests.AccessorTests
             var accessor = CreateOrderAccessor(3); // use seller id 3 to ensure no orders
 
             var results = accessor.SalesTotal();
-            
+
             Assert.IsNull(results);
         }
 
