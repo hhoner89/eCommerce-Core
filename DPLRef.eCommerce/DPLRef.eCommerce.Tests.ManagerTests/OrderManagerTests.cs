@@ -28,7 +28,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
         // Re-submit order after payment auth failure               
 
         #region Test Data
-        
+
         private readonly PaymentInstrument _goodPayment = new PaymentInstrument()
         {
             AccountNumber = "4000111122223333",
@@ -54,7 +54,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
         private AccessorFactory SetupMockAccessorFactory()
         {
             var factory = new AccessorFactory(mockData.Context, SetupMockUtilityFactory());
-            
+
             // cart accessor mock
             var mockCartAccessor = new MockCartAccessor(mockData);
             factory.AddOverride<SalesAcc.ICartAccessor>(mockCartAccessor);
@@ -107,13 +107,13 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
         [TestCategory("Managers-WebStore")]
         public void OrderManager_SubmitOrder()
         {
-            var mgr = GetWebStoreManager(MockData.MySessionIdForOrder);    
+            var mgr = GetWebStoreManager(MockData.MySessionIdForOrder);
 
             var result = mgr.SubmitOrder(CatalogId, _goodPayment);
 
             Assert.IsTrue(result.Success, result.Message);
             Assert.AreEqual(1, result.Order.Id);
-            Assert.AreEqual(1.60m, result.Order.Total);
+            Assert.AreEqual(1.61m, result.Order.Total);
             Assert.IsTrue(mockData.OrderCreated, "Order not created");
             Assert.IsTrue(mockData.OrderSucceeded, "Order unsuccessful");
             Assert.IsTrue(mockData.CartDeleted, "Cart not deleted");
@@ -144,7 +144,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
         public void OrderManager_SubmitOrderBadPayment()
         {
             var mgr = GetWebStoreManager(MockData.MySessionIdForOrder);
-            
+
             var result = mgr.SubmitOrder(CatalogId, _badPayment);
 
             Assert.IsFalse(result.Success);
@@ -152,7 +152,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
             Assert.IsNotNull(result.Order);
 
             Assert.AreEqual(1, result.Order.Id);
-            Assert.AreEqual(1.60m, result.Order.Total);
+            Assert.AreEqual(1.61m, result.Order.Total);
             Assert.IsTrue(mockData.OrderCreated, "Order not created");
             Assert.IsTrue(string.IsNullOrEmpty(result.Order.AuthorizationCode));
             // verify that the progress flags were not set
@@ -190,7 +190,7 @@ namespace DPLRef.eCommerce.Tests.ManagerTests
         public void OrderManager_SubmitOrderException()
         {
             var mgr = GetWebStoreManager(MockData.MyBadSessionId);
-                        
+
             var result = mgr.SubmitOrder(CatalogId, _goodPayment);
 
             Assert.IsFalse(result.Success);
